@@ -7,7 +7,9 @@ export default function ListaAlumno() {
 
    const {listaAlumno,eliminarAlumno,listarAlumnos} = useContextAlumno()
 
-
+    useEffect(()=>{
+        listarAlumnos();
+    }, []);
     return (
         <View>
             <Text>Listado de Alumnos </Text>
