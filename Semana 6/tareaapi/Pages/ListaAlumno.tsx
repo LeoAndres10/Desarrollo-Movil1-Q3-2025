@@ -1,32 +1,11 @@
 import { View, Text, FlatList } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { Alumno } from '../Modelos/Alumno';
+import { useContextAlumno } from '../Provider/ProviderAlumno';
 
 export default function ListaAlumno() {
 
-    const [listaAlumno, setListaAlumno] = useState<Alumno[]>([])
-
-    async function listarAlumnos() {
-
-        const response = await fetch('http://192.168.0.7:5000/alumno', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-
-        const listado = await response.json();
-        setListaAlumno(listado)
-
-    }
-
-    useEffect(() => {
-        listarAlumnos()
-    }, []);
-
-    useEffect(() => {
-        console.log(listaAlumno)
-    }, [listaAlumno])
+   const {listaAlumno,eliminarAlumno} = useContextAlumno()
 
 
     return (
@@ -45,7 +24,7 @@ export default function ListaAlumno() {
                                     <Text>Nombre Alumno: {item.nombreAlumno}</Text>
                                     <Text>Email Alumno: {item.emailAlumno}</Text>
                                     <Text>Cantidad Clase : {item.cantidadClases}</Text>
-
+                                    <Button title="Eliminar Alumno" onPress={eliminarAlumno(item.idAlumno.toString())}></Button>
                                 </View>
 
                             }
