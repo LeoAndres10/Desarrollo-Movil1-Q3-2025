@@ -5,7 +5,7 @@ import { useContextAlumno } from '../Provider/ProviderAlumno';
 
 export default function ListaAlumno() {
 
-   const {listaAlumno,eliminarAlumno} = useContextAlumno()
+   const {listaAlumno,eliminarAlumno,listarAlumnos} = useContextAlumno()
 
 
     return (
